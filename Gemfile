@@ -16,6 +16,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'twitter-bootstrap-rails'
 gem 'slim-rails'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug', platform: :mri
