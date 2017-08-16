@@ -17,13 +17,13 @@ gem 'jbuilder', '~> 2.5'
 gem 'twitter-bootstrap-rails'
 gem 'slim-rails'
 gem 'simple_form'
+gem 'devise'
 
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'rails-controller-testing'
   gem 'factory_girl_rails'
-  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
 
 group :development do
@@ -31,6 +31,12 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  gem 'launchy'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
