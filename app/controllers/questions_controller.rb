@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  respond_to :html
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :find_question, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -17,24 +19,17 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.create(question_params)
-    if @question.save
-      redirect_to @question
-    else
-      render :new
-    end
+    respond_with @question
   end
 
   def update
-    if @question.update(question_params)
-      redirect_to @question
-    else
-      render :edit
-    end
+    @question.update(question_params)
+    respond_with @question
   end
 
   def destroy
     @question.destroy
-    redirect_to questions_path
+    respond_with @question
   end
 
   private
