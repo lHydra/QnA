@@ -18,6 +18,7 @@ gem 'twitter-bootstrap-rails'
 gem 'slim-rails'
 gem 'simple_form'
 gem 'devise'
+gem 'responders'
 
 group :development, :test do
   gem 'byebug', platform: :mri
