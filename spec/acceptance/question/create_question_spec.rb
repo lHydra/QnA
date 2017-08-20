@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 feature 'create new question', %q{
-  In order to be able create new question
+  In order to be able receive the answers
   As an User
-  I want to be able receive the answers
+  I want to be able create new question
 } do
 
   given(:user) { create(:user) }
