@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
-  let(:question) { create(:question) }
+  sign_in_user
+  let(:question) { create(:question, user_id: @user.id) }
 
   describe 'GET #index' do
     let(:questions) { create_list(:question, 2) }
@@ -29,7 +30,6 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'GET #new' do
-    sign_in_user
     before { get :new }
 
     it 'assigns new Question to @question' do
@@ -42,7 +42,6 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'GET #edit' do
-    sign_in_user
     before { get :edit, params: { id: question } }
 
     it 'assigns the requested question to @question' do
@@ -55,34 +54,30 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'POST #create' do
-    sign_in_user
-
     context 'with valid attributes' do
       it 'saves the new question in the db' do
-        expect { post :create, params: { question: attributes_for(:question) } }.to change(Question, :count).by(1)
+        expect { post :create, params: { question: attributes_for(:question, user_id: @user.id) } }.to change(Question, :count).by(1)
       end
 
       it 'redirects to show view' do
-        post :create, params: { question: attributes_for(:question) }
+        post :create, params: { question: attributes_for(:question, user_id: @user.id) }
         expect(response).to redirect_to question_path(assigns(:question))
       end
     end
 
     context 'with invalid attributes' do
       it 'doesn`t save the question' do
-        expect { post :create, params: { question: attributes_for(:invalid_question) } }.to_not change(Question, :count)
+        expect { post :create, params: { question: attributes_for(:invalid_question, user_id: @user.id) } }.to_not change(Question, :count)
       end
 
       it 're-renders new template' do
-        post :create, params: { question: attributes_for(:invalid_question) }
+        post :create, params: { question: attributes_for(:invalid_question, user_id: @user.id) }
         expect(response).to render_template :new
       end
     end
   end
 
   describe 'PUT #update' do
-    sign_in_user
-
     context 'with valid attributes' do
       it 'assigns the requested question to @question' do
         put :update, params: { id: question, question: attributes_for(:question) }
@@ -90,10 +85,10 @@ RSpec.describe QuestionsController, type: :controller do
       end
 
       it 'updates question attributes' do
-        put :update, params: { id: question, question: { title: 'New Title', body: 'New body' } }
+        put :update, params: { id: question, question: { title: 'Updated Title', body: 'Updated body' } }
         question.reload
-        expect(question.title).to eq('New Title')
-        expect(question.body).to eq('New body')
+        expect(question.title).to eq('Updated Title')
+        expect(question.body).to eq('Updated body')
       end
 
       it 'redirects to the updated question' do
@@ -118,8 +113,6 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    sign_in_user
-    
     it 'deletes question' do
       question
       expect { delete :destroy, params: { id: question } }.to change(Question, :count).by(-1)
