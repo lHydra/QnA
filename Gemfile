@@ -25,6 +25,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rails-controller-testing'
   gem 'factory_girl_rails'
+  gem 'capybara-webkit'
 end
 
 group :development do
@@ -38,7 +39,6 @@ group :test do
   gem 'capybara'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'launchy'
-  gem 'selenium-webdriver'
   gem 'database_cleaner'
 end
 

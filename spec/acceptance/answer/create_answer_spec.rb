@@ -1,4 +1,4 @@
-require 'rails_helper'
+require_relative '../acceptance_helper'
 
 feature 'create answer', %q{
   In order to exchange my knowledge
@@ -14,11 +14,21 @@ feature 'create answer', %q{
     visit questions_path
     click_on question.title
 
-    fill_in 'Answer', with: 'Some answer'
+    fill_in 'answer_body', with: 'Some answer'
     click_on 'Create'
 
     within '.answers' do
       expect(page).to have_content 'Some answer'
     end
+  end
+
+  scenario 'User tries create not-valid answer', js: true do
+    sign_in(user)
+    visit questions_path
+    click_on question.title
+
+    click_on 'Create'
+
+    expect(page).to have_content 'Body can\'t be blank'
   end
 end
