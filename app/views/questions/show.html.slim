@@ -5,7 +5,9 @@ p= @question.body
   = render 'answers'
     
 = simple_form_for [@question, @answer], remote: true do |f|
-  = f.input :body, label: 'Answer'
+  = f.label 'Answer'
+  .answer-errors
+  = f.input :body, label: ''
   = f.button :submit
 
 = link_to 'Edit', edit_question_path(@question)

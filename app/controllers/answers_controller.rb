@@ -1,4 +1,6 @@
 class AnswersController < ApplicationController
+  respond_to :html, :js
+
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.create(answer_params)
