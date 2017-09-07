@@ -1,3 +1,11 @@
 h1= @question.title
 p= @question.body
+
+.answers
+  = render 'answers'
+    
+= simple_form_for [@question, @answer], remote: true do |f|
+  = f.input :body, label: 'Answer'
+  = f.button :submit
+
 = link_to 'Edit', edit_question_path(@question)
