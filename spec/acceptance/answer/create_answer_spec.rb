@@ -31,4 +31,13 @@ feature 'create answer', %q{
 
     expect(page).to have_content 'Body can\'t be blank'
   end
+
+  scenario 'Guest tries to create answer', js: true do
+    visit questions_path
+    click_on question.title
+
+    click_on 'Create'
+
+    expect(page).to have_content('To answer a question, you must either sign up for an account')
+  end
 end

@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = @question.answers.build
+    @answers = @question.answers.all
   end
 
   def new
@@ -22,6 +23,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.create(question_params)
     @question.user = current_user
+    @question.save
     respond_with @question
   end
 
