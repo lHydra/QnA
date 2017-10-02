@@ -1,2 +1,10 @@
-- @question.answers.each do |a|
+h3 Answers:
+- @answers.each do |a|
   p= a.body
+  - if user_signed_in? && a.user == current_user
+    = link_to 'Edit answer', '', class: 'edit-answer-link', data: { answer_id: a.id }
+  = simple_form_for [@question, a], remote: true, html: { id: "edit-answer-#{a.id}", class: 'edit_answer' } do |f|
+    = f.label 'Answer'
+    = f.input :body, label: ''
+    = f.submit 'Save'
+  hr

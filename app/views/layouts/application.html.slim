@@ -4,8 +4,8 @@ html
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     title QnA
     = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
   body
     nav.navbar.navbar-inverse
       .container-fluid
@@ -27,9 +27,8 @@ html
                 = link_to 'Registration', new_user_registration_path
             - else
               li
-                = link_to 'Logout', destroy_user_session_path
-
-    p.notice= notice
+                = link_to 'Logout', destroy_user_session_path, method: :delete
+    p.notice.alert-success= notice
     p.alert= alert
     = yield
  

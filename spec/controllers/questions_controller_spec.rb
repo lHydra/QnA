@@ -1,8 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
-  sign_in_user
-  let(:question) { create(:question, user_id: @user.id) }
+  let(:user) { create(:user) }
+  let(:question) { create(:question, user: user) }
+
+  before do
+    sign_in(user)
+  end
 
   describe 'GET #index' do
     let(:questions) { create_list(:question, 2) }
@@ -26,6 +30,10 @@ RSpec.describe QuestionsController, type: :controller do
 
     it 'assigns the requested answer to @answer' do
       expect(assigns(:answer)).to be_a_new(Answer)
+    end
+
+    it 'assigns the requested answers to @answers' do
+      expect(assigns(:answers)).to match_array(question.answers)
     end
 
     it 'renders show view' do
@@ -60,22 +68,22 @@ RSpec.describe QuestionsController, type: :controller do
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'saves the new question in the db' do
-        expect { post :create, params: { question: attributes_for(:question, user_id: @user.id) } }.to change(Question, :count).by(1)
+        expect { post :create, params: { question: attributes_for(:question) } }.to change(Question, :count).by(1)
       end
 
       it 'redirects to show view' do
-        post :create, params: { question: attributes_for(:question, user_id: @user.id) }
+        post :create, params: { question: attributes_for(:question) }
         expect(response).to redirect_to question_path(assigns(:question))
       end
     end
 
     context 'with invalid attributes' do
       it 'doesn`t save the question' do
-        expect { post :create, params: { question: attributes_for(:invalid_question, user_id: @user.id) } }.to_not change(Question, :count)
+        expect { post :create, params: { question: attributes_for(:invalid_question) } }.to_not change(Question, :count)
       end
 
       it 're-renders new template' do
-        post :create, params: { question: attributes_for(:invalid_question, user_id: @user.id) }
+        post :create, params: { question: attributes_for(:invalid_question) }
         expect(response).to render_template :new
       end
     end
