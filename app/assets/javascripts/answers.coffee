@@ -8,7 +8,6 @@
       $(this).hide()
       answer_id = $(this).data('answerId')
       $('form#edit-answer-' + answer_id).show()
-@update()
 
 $ ->
   $("#new_answer").bind "ajax:error", (event, jqXHR, ajaxSettings, thrownError) ->
