@@ -7,7 +7,7 @@ class AnswersController < ApplicationController
     @answer = @question.answers.create(answer_params)
     @answer.user = current_user
     @answer.save
-    @answers = @question.answers.all
+    @answers = @question.answers.all.order('id DESC')
 
     respond_with @answer.question
   end
