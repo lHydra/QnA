@@ -36,6 +36,10 @@ RSpec.describe QuestionsController, type: :controller do
       expect(assigns(:answers)).to match_array(question.answers)
     end
 
+    it 'assigns the requested attachments to @attachments' do
+      expect(assigns(:attachments)).to match_array(question.attachments)
+    end
+
     it 'renders show view' do
       expect(response).to render_template :show
     end
@@ -46,6 +50,10 @@ RSpec.describe QuestionsController, type: :controller do
 
     it 'assigns new Question to @question' do
       expect(assigns(:question)).to be_a_new(Question)
+    end
+
+    it 'assigns new attachments to @attachments' do
+      expect(assigns(:question).attachments.first).to be_a_new(Attachment)
     end
 
     it 'render new view' do
