@@ -19,6 +19,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'responders'
 gem 'carrierwave', '~> 1.0'
+gem 'remotipart', '~> 1.2'
 
 group :development, :test do
   gem 'byebug', platform: :mri
