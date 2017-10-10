@@ -12,6 +12,7 @@ class QuestionsController < ApplicationController
     @answer = @question.answers.build
     @answers = @question.answers.all.order('id DESC')
     @attachments = @question.attachments
+    @answer.attachments.build
   end
 
   def new
@@ -52,6 +53,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :body, attachments_attributes: [:file])
+    params.require(:question).permit(:title, :body, attachments_attributes: [:id, :file])
   end
 end

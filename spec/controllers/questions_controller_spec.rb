@@ -40,6 +40,10 @@ RSpec.describe QuestionsController, type: :controller do
       expect(assigns(:attachments)).to match_array(question.attachments)
     end
 
+    it 'assigns the requested answer.attachemnts' do
+      expect(assigns(:answer).attachments.first).to be_a_new(Attachment)
+    end
+
     it 'renders show view' do
       expect(response).to render_template :show
     end
