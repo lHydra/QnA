@@ -128,6 +128,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.10.3)
     multi_json (1.12.2)
+    nested_form (0.3.2)
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
@@ -265,6 +266,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (~> 3.0.5)
+  nested_form
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.1)

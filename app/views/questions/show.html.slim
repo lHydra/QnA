@@ -8,11 +8,12 @@ ul
   = render 'answers'
 
 .errors.alert-danger
-= simple_form_for [@question, @answer], remote: true do |f|
+= simple_nested_form_for [@question, @answer], remote: true do |f|
   = f.label 'Answer'
   = f.input :body, label: ''
   = f.simple_fields_for :attachments do |a|
     = a.input :file, as: :file, label: 'Upload Attachment'
+  p= f.link_to_add 'Add a file', :attachments
   = f.button :submit
 
 = link_to 'Edit', edit_question_path(@question)
