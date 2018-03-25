@@ -1,11 +1,13 @@
 class QuestionsController < ApplicationController
-  respond_to :html
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_question, only: [:show, :edit, :update, :destroy]
   before_action :authorization_filter, only: [:edit, :update]
 
+  respond_to :html
+
   def index
     @questions = Question.all
+    respond_with @questions
   end
 
   def show
@@ -13,15 +15,16 @@ class QuestionsController < ApplicationController
     @answers = @question.answers.all.order('id DESC')
     @attachments = @question.attachments
     @answer.attachments.build
+    respond_with @question
   end
 
   def new
     @question = Question.new
     @question.attachments.build
+    respond_with @question
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @question = Question.new(question_params)
@@ -36,8 +39,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.destroy
-    respond_with @question
+    respond_with @question.destroy
   end
 
   private

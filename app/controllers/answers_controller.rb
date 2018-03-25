@@ -1,7 +1,8 @@
 class AnswersController < ApplicationController
-  respond_to :js
   before_action :find_question
   before_action :authenticate_user!, only: [:create, :update]
+
+  respond_to :js
 
   def create
     @answer = @question.answers.new(answer_params)
@@ -25,11 +26,11 @@ class AnswersController < ApplicationController
 
   private
 
-  def answer_params
-    params.require(:answer).permit(:body, attachments_attributes: [:file])
-  end
-
   def find_question
     @question = Question.find(params[:question_id])
+  end
+
+  def answer_params
+    params.require(:answer).permit(:body, attachments_attributes: [:file])
   end
 end
