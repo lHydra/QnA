@@ -12,18 +12,13 @@ RSpec.describe AnswersController, type: :controller do
 
       context 'with valid attributes' do
         it 'saves the new answer in the db' do
-          expect { post :create, params: { answer: attributes_for(:answer), question_id: question } }.to change(question.answers, :count).by(1)
-        end
-
-        it 'redirects to the question show view' do
-          post :create, params: { answer: attributes_for(:answer), question_id: question}
-          expect(response).to redirect_to question_path(question)
+          expect { post :create, params: { answer: attributes_for(:answer), question_id: question }, format: :js }.to change(question.answers, :count).by(1)
         end
       end
 
       context 'with invalid attributes' do
         it 'doesn`t saves the new answer in the db' do
-          expect { post :create, params: { answer: attributes_for(:invalid_answer), question_id: question } }.to_not change(Answer, :count)
+          expect { post :create, params: { answer: attributes_for(:invalid_answer), question_id: question }, format: :js }.to_not change(Answer, :count)
         end
       end
     end
@@ -54,11 +49,6 @@ RSpec.describe AnswersController, type: :controller do
         it 'assigns the requested answer to @answer' do
           put :update, params: { id: answer, question_id: question, answer: attributes_for(:answer) }, format: :js
           expect(assigns(:answer)).to eq(answer)
-        end
-
-        it 'assigns the requested question to @question' do
-          put :update, params: { id: answer, question_id: question, answer: attributes_for(:answer) }, format: :js
-          expect(assigns(:question)).to eq(question)
         end
 
         it 'updates answer attributes' do

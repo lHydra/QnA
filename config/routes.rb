@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'questions#index'
-  resources :questions do
-    resources :answers, only: [:create, :update]
+
+  concern :commentable do
+    resources :comments
+  end
+
+  resources :questions, concerns: :commentable, shallow: true do
+    resources :answers, concerns: :commentable
   end
 end

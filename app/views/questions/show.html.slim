@@ -1,11 +1,11 @@
 h1= @question.title
 p= @question.body
 ul
-  - @attachments.each do |a|
+  - @question.attachments.each do |a|
     li= link_to a.file.filename, a.file.url
 
 .answers
-  = render 'answers'
+  = render 'answers', question: @question
 
 .errors.alert-danger
 = simple_nested_form_for [@question, @answer], remote: true do |f|

@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
-  before_action :find_question
-  before_action :authenticate_user!, only: [:create, :update]
+  before_action :find_question, only: :create
+  before_action :authenticate_user!
 
   respond_to :js
 
@@ -8,20 +8,16 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new(answer_params)
     @answer.user = current_user
     @answers = @question.answers.all.order('id DESC')
+    @answer.save
 
-    if @answer.save
-      respond_with @answer, location: -> { @answer.question }
-    else
-      render 'create.js.erb'
-    end
+    respond_with @answer, location: -> { @answer.question }
   end
 
   def update
     @answer = Answer.find(params[:id])
     @answer.update(answer_params)
-    @answers = @question.answers.all.order('id DESC')
 
-    respond_with @answer, location: -> { @answer.question }
+    respond_with @answer
   end
 
   private

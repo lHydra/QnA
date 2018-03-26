@@ -32,14 +32,6 @@ RSpec.describe QuestionsController, type: :controller do
       expect(assigns(:answer)).to be_a_new(Answer)
     end
 
-    it 'assigns the requested answers to @answers' do
-      expect(assigns(:answers)).to match_array(question.answers)
-    end
-
-    it 'assigns the requested attachments to @attachments' do
-      expect(assigns(:attachments)).to match_array(question.attachments)
-    end
-
     it 'assigns the requested answer.attachemnts' do
       expect(assigns(:answer).attachments.first).to be_a_new(Attachment)
     end

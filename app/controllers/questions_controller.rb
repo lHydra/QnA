@@ -12,8 +12,6 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = @question.answers.build
-    @answers = @question.answers.all.order('id DESC')
-    @attachments = @question.attachments
     @answer.attachments.build
     respond_with @question
   end
