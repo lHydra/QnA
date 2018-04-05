@@ -14,8 +14,10 @@ feature 'create answer', %q{
     visit questions_path
     click_on question.title
 
-    fill_in 'answer_body', with: 'Some answer'
-    click_on 'Create'
+    within '.create-answer' do
+      fill_in 'answer_body', with: 'Some answer'
+      click_on 'Create'
+    end
 
     within '.answers' do
       expect(page).to have_content 'Some answer'
@@ -27,7 +29,9 @@ feature 'create answer', %q{
     visit questions_path
     click_on question.title
 
-    click_on 'Create'
+    within '.create-answer' do
+      click_on 'Create'
+    end
 
     expect(page).to have_content 'Body can\'t be blank'
   end
@@ -36,7 +40,9 @@ feature 'create answer', %q{
     visit questions_path
     click_on question.title
 
-    click_on 'Create'
+    within '.create-answer' do
+      click_on 'Create'
+    end
 
     expect(page).to have_content('To answer a question, you must either sign up for an account')
   end

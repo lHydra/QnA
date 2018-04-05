@@ -4,7 +4,7 @@
   <% end %>
 <% else %>
   $('.errors').html('');
-  $('.answers').html('<%= j render 'questions/answers', question: @question %>');
+  $('.answers').html("<%= j render 'questions/answers' %>");
   $('#answer_body').val('');
   update();
 <% end %>
