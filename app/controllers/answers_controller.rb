@@ -15,6 +15,7 @@ class AnswersController < ApplicationController
 
   def update
     @answer = Answer.find(params[:id])
+    @question = @answer.question
     @answer.update(answer_params)
 
     respond_with @answer

@@ -66,7 +66,7 @@ RSpec.describe AnswersController, type: :controller do
 
       context 'with invalid attributes' do
         it 'doesn`t update the answer' do
-          put :update, params: { id: answer, question_id: question, answer: {body: nil } }, format: :js
+          put :update, params: { id: answer, question_id: question, answer: { body: nil } }, format: :js
           answer.reload
 
           expect(answer.body).to eq('MyString')

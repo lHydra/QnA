@@ -1,12 +1,16 @@
-- question.answers.order('id DESC').each do |answer|
-  p= answer.body
-  ul
-    - answer.attachments.each do |attach|
-      li= link_to attach.file.filename, attach.file.url
-  - if user_signed_in? && answer.user == current_user
-    = link_to 'Edit answer', '', class: 'edit-answer-link', data: { answer_id: answer.id }
-  = simple_form_for answer, remote: true, html: { id: "edit-answer-#{answer.id}", class: 'edit_answer' } do |f|
-    = f.label 'Answer'
-    = f.input :body, label: ''
-    = f.submit 'Save'
-  hr
+- @question.answers.order('id DESC').each do |answer|
+  .answer id="answer-#{answer.id}"
+    p= answer.body
+    ul
+      - answer.attachments.each do |attach|
+        li= link_to attach.file.filename, attach.file.url
+    - if user_signed_in? && answer.user == current_user
+      = link_to 'Edit answer', '', class: 'edit-answer-link', data: { answer_id: answer.id }
+    p
+      = simple_form_for answer, remote: true, html: { id: "edit-answer-#{answer.id}", class: 'edit_answer' } do |f|
+        = f.label 'Answer'
+        = f.input :body, label: ''
+        = f.submit 'Save'
+    .comments
+      = render 'comments/list', parent: answer
+    hr
