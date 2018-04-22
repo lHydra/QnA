@@ -16,11 +16,13 @@ gem 'jbuilder', '~> 2.5'
 gem 'twitter-bootstrap-rails'
 gem 'slim-rails'
 gem 'simple_form'
-gem 'devise'
 gem 'responders'
 gem 'carrierwave', '~> 1.0'
 gem 'remotipart', '~> 1.2'
 gem 'nested_form'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'byebug', platform: :mri
