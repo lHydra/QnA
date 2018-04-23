@@ -23,6 +23,7 @@ gem 'nested_form'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
 
 group :development, :test do
   gem 'byebug', platform: :mri
