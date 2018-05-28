@@ -1,8 +1,5 @@
 h1 All questions
 - @questions.each do |q|
-  p= link_to q.title, question_path(q)
-  p= q.body
-  = link_to 'Show', question_path(q)я
-  = link_to 'Edit', edit_question_path(q)
-  = link_to 'Delete', question_path(q), method: :delete
+  h2= link_to q.title, question_path(q)
+  p.text-right= "Asked at #{q.created_at.strftime("%b %d, %Y")} by #{q.user.email}"
   hr
