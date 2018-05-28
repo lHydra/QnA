@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
   before_action :find_question, only: :create
   before_action :authenticate_user!
+  before_action :load_answer, only: :update
 
   respond_to :js
 
@@ -14,8 +15,7 @@ class AnswersController < ApplicationController
   end
 
   def update
-    @answer = Answer.find(params[:id])
-    @question = @answer.question
+    authorize @answer
     @answer.update(answer_params)
 
     respond_with @answer
@@ -25,6 +25,11 @@ class AnswersController < ApplicationController
 
   def find_question
     @question = Question.find(params[:question_id])
+  end
+
+  def load_answer
+    @answer = Answer.find(params[:id])
+    @question = @answer.question
   end
 
   def answer_params

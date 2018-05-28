@@ -10,7 +10,7 @@ feature 'Edit answer', %q{
   given(:question) { create(:question) }
   given!(:answer) { create(:answer, question: question, user: author) }
 
-  scenario 'Guest user tries to edit answer' do
+  scenario 'Guest tries to edit answer' do
     visit question_path(question)
     expect(page).not_to have_link('Edit answer')
   end

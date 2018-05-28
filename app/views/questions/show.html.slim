@@ -19,5 +19,5 @@
       = a.input :file, as: :file, label: 'Upload Attachment'
     p= f.link_to_add 'Add a file', :attachments
     = f.button :submit
-
-= link_to 'Edit', edit_question_path(@question)
+- if user_signed_in? && policy(@question).edit?
+  = link_to 'Edit', edit_question_path(@question)

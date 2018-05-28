@@ -24,6 +24,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
+gem 'pundit'
 
 group :development, :test do
   gem 'byebug', platform: :mri
