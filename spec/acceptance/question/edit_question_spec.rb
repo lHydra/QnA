@@ -11,18 +11,14 @@ feature 'Edit question', %q{
 
   scenario 'Guest tries to edit question' do
     visit question_path(question)
-    click_on 'Edit'
-
-    expect(page).to have_content('You need to sign in or sign up before continuing.')
+    expect(page).not_to have_link('Edit')
   end
 
   scenario 'User tries to edit someone else`s question' do
     sign_in(user)
 
     visit question_path(question)
-    click_on 'Edit'
-
-    expect(page).to have_content('You don`t have enough rights')
+    expect(page).not_to have_link('Edit')
   end
 
   scenario 'User tries to edit his question' do

@@ -38,7 +38,7 @@ RSpec.describe AnswersController, type: :controller do
   describe 'PUT #update' do
     let(:question) { create(:question) }
     let(:user) { create(:user) }
-    let!(:answer) { create(:answer, question: question) }
+    let!(:answer) { create(:answer, question: question, user: user) }
 
     context 'Author update answer' do
       before do

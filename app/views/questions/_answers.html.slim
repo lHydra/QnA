@@ -4,7 +4,7 @@
     ul
       - answer.attachments.each do |attach|
         li= link_to attach.file.filename, attach.file.url
-    - if user_signed_in? && answer.user == current_user
+    - if user_signed_in? && policy(answer).update?
       = link_to 'Edit answer', '', class: 'edit-answer-link', data: { answer_id: answer.id }
     p
       = simple_form_for answer, remote: true, html: { id: "edit-answer-#{answer.id}", class: 'edit_answer' } do |f|

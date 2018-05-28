@@ -1,7 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_question, only: [:show, :edit, :update, :destroy]
-  before_action :authorization_filter, only: [:edit, :update]
 
   respond_to :html
 
@@ -22,7 +21,9 @@ class QuestionsController < ApplicationController
     respond_with @question
   end
 
-  def edit; end
+  def edit
+    authorize @question
+  end
 
   def create
     @question = Question.new(question_params)
@@ -33,10 +34,12 @@ class QuestionsController < ApplicationController
 
   def update
     @question.update(question_params)
+    authorize @question
     respond_with @question
   end
 
   def destroy
+    authorize @question
     respond_with @question.destroy
   end
 
@@ -44,12 +47,6 @@ class QuestionsController < ApplicationController
 
   def find_question
     @question = Question.find(params[:id])
-  end
-
-  def authorization_filter
-    if current_user != Question.find(params[:id]).user
-      redirect_to questions_path, notice: 'You don`t have enough rights'
-    end
   end
 
   def question_params

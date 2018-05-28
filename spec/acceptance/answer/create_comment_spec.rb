@@ -8,7 +8,7 @@ feature 'create comment', %q{
 
   given(:user) { create(:user) }
   given!(:question) { create(:question) }
-  given!(:answer) { create(:answer, question: question) }
+  given!(:answer) { create(:answer, question: question, user: user) }
 
   scenario 'User tries to commenting the answer', js: true do
     sign_in(user)
