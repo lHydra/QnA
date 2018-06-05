@@ -25,6 +25,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'pundit'
+gem 'doorkeeper'
+gem 'active_model_serializers', '~> 0.10.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -44,6 +46,7 @@ end
 group :test do
   gem 'capybara'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  gem 'json_spec'
   gem 'launchy'
   gem 'database_cleaner'
 end
