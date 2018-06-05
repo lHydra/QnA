@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :question do
+  factory :question do |question|
     user
     title 'Some title'
     body 'Some body'
