@@ -13,4 +13,4 @@
 $ ->
   $("#new_answer").bind "ajax:error", (event, jqXHR, ajaxSettings, thrownError) ->
     if jqXHR.status == 401 # thrownError is 'Unauthorized'
-      $(".errors").html('To answer a question, you must either sign up for an account')
+      $(".answers-errors").html('To answer a question, you must either sign up for an account')

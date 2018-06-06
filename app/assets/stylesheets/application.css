@@ -17,3 +17,28 @@
    margin-bottom: 0;
    border-radius: 0;
  }
+
+ .alert {
+  margin-top: 20px;
+ }
+
+.comments-errors, .answers-errors {
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 15px;
+  margin: 5px 0;
+}
+
+.comments-errors:empty {
+  display: none;
+}
+
+.answers-errors:empty {
+  display: none;
+}
+
+.created {
+  font-style: italic;
+  font-size: .95em;
+  color: gray;
+}

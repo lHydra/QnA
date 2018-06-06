@@ -1,24 +1,25 @@
-# README
+# Questions & Answers
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple QnA service where you can ask a questions and recieve an answers.
 
-Things you may want to cover:
+I'm doing this project for myself, I'm trying new technologies and features in it.
 
-* Ruby version
+### At the moment the project implemented the following:
 
-* System dependencies
+* Guest can sign in/sign up 
+* User can ask a question
+* User can answer questions
+* User can sign in through Facebook and VK
+* User can comment answers and questions
+* User can add atachment file to the question/answer
+* Project has authorization for Question and Answer
+* Project has API v1 (you can create question, create answer, get list of answers, get list of questions, get profile, get question and get answer)
 
-* Configuration
+### Technologies used in the project:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* **Bootstrap** for design
+* **Devise** and **Omniauth** for authentication
+* **Carrierwave** for attachment files
+* **Pundit** for authorization
+* **Doorkeeper** for API
+* **RSpec**, Capybara, Factory Bot - for testing

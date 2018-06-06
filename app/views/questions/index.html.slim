@@ -1,5 +1,5 @@
 h1 All questions
 - @questions.each do |q|
   h2= link_to q.title, question_path(q)
-  p.text-right= "Asked at #{q.created_at.strftime("%b %d, %Y")} by #{q.user.email}"
+  p.text-right.created= "Asked at #{q.created_at.strftime("%b %d, %Y")} by #{q.user.email}"
   hr

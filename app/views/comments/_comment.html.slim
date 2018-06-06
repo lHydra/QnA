@@ -1,2 +1,4 @@
-p= "#{comment.body} - #{comment.created_at.strftime("%c")}"
+p
+  = "#{comment.body} - "
+  span.created= comment.created_at.strftime('%c')
 hr

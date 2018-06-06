@@ -14,7 +14,7 @@ hr
   = render 'answers'
 
 .create-answer
-  .errors.alert-danger
+  .answers-errors.alert-danger
   = simple_nested_form_for [@question, @answer], remote: true do |f|
     = f.label 'Answer'
     = f.input :body, label: ''
