@@ -72,4 +72,13 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '.weekly_mailing' do
+    let!(:users) { create_list(:user,2) }
+
+    it 'should send weekly digest to all users' do
+      users.each { |user| expect(WeeklyMailer).to receive(:weekly_digest).with(user).and_call_original }
+      User.weekly_mailing
+    end
+  end
 end

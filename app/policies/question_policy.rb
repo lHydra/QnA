@@ -1,5 +1,4 @@
 class QuestionPolicy < ApplicationPolicy
-
   def edit?
     record.user == user
   end
