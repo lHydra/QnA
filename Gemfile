@@ -27,6 +27,8 @@ gem 'omniauth-vkontakte'
 gem 'pundit'
 gem 'doorkeeper'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'sidekiq'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'byebug', platform: :mri

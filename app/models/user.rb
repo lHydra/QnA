@@ -22,4 +22,10 @@ class User < ApplicationRecord
     end
     user
   end
+
+  def self.weekly_mailing
+    find_each do |user|
+      WeeklyMailer.delay.weekly_digest(user)
+    end
+  end
 end
