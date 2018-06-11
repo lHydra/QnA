@@ -1,0 +1,3 @@
+= simple_form_for(current_user.subscriptions.build, remote: true) do |f|
+  = f.input :question_id, as: :hidden, input_html: { value: @question.id }
+  = f.submit 'subscribe', class: 'btn btn-info btn-sm'

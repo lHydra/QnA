@@ -1,0 +1,2 @@
+= simple_form_for(current_user.subscriptions.find_by(question_id: @question), remote: true, method: :delete) do |f|
+  = f.submit 'unsubscribe', class: 'btn btn-warning btn-sm'

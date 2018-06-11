@@ -6,6 +6,8 @@ RSpec.describe User, type: :model do
   it { should have_many(:answers) }
   it { should have_many(:questions) }
   it { should have_many(:authorizations) }
+  it { should have_many(:subscriptions) }
+  it { should have_many(:subscribed_questions) }
 
   describe '.find_for_oauth' do
     let!(:user) { create(:user) }
@@ -79,6 +81,30 @@ RSpec.describe User, type: :model do
     it 'should send weekly digest to all users' do
       users.each { |user| expect(WeeklyMailer).to receive(:weekly_digest).with(user).and_call_original }
       User.weekly_mailing
+    end
+  end
+
+  describe '.subscribe' do
+    let(:question) { create(:question) }
+    let!(:user) { create(:user) }
+
+    it 'should create relation with question' do
+      user.subscribe!(question)
+      expect(user.subscribed_questions).to include(question)
+    end
+  end
+
+  describe '.unsubscribe' do
+    let(:question) { create(:question, user: user) }
+    let!(:user) { create(:user) }
+
+    before do
+      user.subscribe!(question)
+    end
+
+    it 'should destroy relation with question' do
+      user.unsubscribe!(question)
+      expect(user.subscribed_questions).not_to include(question)
     end
   end
 end
