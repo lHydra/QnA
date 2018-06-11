@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   resources :questions, concerns: :commentable, shallow: true do
     resources :answers, concerns: :commentable
   end
+
+  resources :subscriptions, only: [:create, :destroy]
 end
