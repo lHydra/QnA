@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :subscriptions
   has_many :subscribed_questions, through: :subscriptions, source: :question
 
+  def subscribing?(question)
+    subscribed_questions.find_by(id: question.id)
+  end
+
   def subscribe!(question)
     subscriptions.create!(question_id: question.id)
   end

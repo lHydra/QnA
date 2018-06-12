@@ -15,7 +15,7 @@ feature 'create answer', %q{
     click_on question.title
 
     within '.create-answer' do
-      fill_in 'answer_body', with: 'Some answer'
+      fill_in 'new_answer_body', with: 'Some answer'
       click_on 'Create'
     end
 
