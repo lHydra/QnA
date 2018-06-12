@@ -23,7 +23,7 @@ hr
   .answers-errors.alert-danger
   = simple_nested_form_for [@question, @answer], remote: true do |f|
     = f.label 'Answer'
-    = f.input :body, label: ''
+    = f.input :body, label: '', input_html: { id: 'new_answer_body' }
     = f.simple_fields_for :attachments do |a|
       = a.input :file, as: :file, label: 'Upload Attachment'
     p= f.link_to_add 'Add a file', :attachments

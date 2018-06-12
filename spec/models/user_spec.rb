@@ -84,7 +84,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '.subscribe' do
+  describe '.subscribe!' do
     let(:question) { create(:question) }
     let!(:user) { create(:user) }
 
@@ -94,8 +94,8 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '.unsubscribe' do
-    let(:question) { create(:question, user: user) }
+  describe '.unsubscribe!' do
+    let(:question) { create(:question) }
     let!(:user) { create(:user) }
 
     before do
@@ -105,6 +105,24 @@ RSpec.describe User, type: :model do
     it 'should destroy relation with question' do
       user.unsubscribe!(question)
       expect(user.subscribed_questions).not_to include(question)
+    end
+  end
+
+  describe '.subscribing?' do
+    let(:question1) { create(:question) }
+    let(:question2) { create(:question) }
+    let!(:user) { create(:user) }
+
+    before do
+      user.subscribe!(question1)
+    end
+
+    it 'should return subscribed question if user subscribed to the question' do
+      expect(user.subscribing?(question1)).to eq(question1)
+    end
+
+    it 'should return nil if user is not subscribed to the question' do
+      expect(user.subscribing?(question2)).to be_nil
     end
   end
 end
