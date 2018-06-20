@@ -1,3 +1,11 @@
+.search_answer
+  h3 Search Answer
+  = form_tag search_question_answers_path(@question), method: :get do
+    .input-group
+      = text_field_tag(:q, params[:q], class: 'form-control')
+      span.input-group-btn
+        = button_tag 'Search', class: 'btn btn-default'
+
 - @question.answers.order('id DESC').each do |answer|
   .answer id="answer-#{answer.id}"
     p= answer.body

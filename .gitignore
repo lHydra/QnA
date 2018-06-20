@@ -16,5 +16,8 @@ localhost.crt
 localhost.key
 /public/uploads/
 
+/config/development.sphinx.conf
+/db/sphinx
+
 # Ignore Byebug command history file.
 .byebug_history

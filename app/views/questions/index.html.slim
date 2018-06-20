@@ -1,4 +1,11 @@
-h1 All questions
+.search_question
+  h3 Search Question
+  = form_tag search_questions_path, method: :get do
+    .input-group
+      = text_field_tag(:q, params[:q], class: 'form-control')
+      span.input-group-btn
+        = button_tag 'Search', class: 'btn btn-default'
+
 - @questions.each do |q|
   h2= link_to q.title, question_path(q)
   p.text-right.created= "Asked at #{q.created_at.strftime("%b %d, %Y")} by #{q.user.email}"
