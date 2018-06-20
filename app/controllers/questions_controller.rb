@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :find_question, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -41,6 +41,10 @@ class QuestionsController < ApplicationController
   def destroy
     authorize @question
     respond_with @question.destroy
+  end
+
+  def search
+    @results = Question.search(params[:q])
   end
 
   private

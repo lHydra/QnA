@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
-  before_action :find_question, only: :create
-  before_action :authenticate_user!
+  before_action :find_question, only: [:create, :search]
+  before_action :authenticate_user!, except: :search
   before_action :load_answer, only: :update
 
   respond_to :js
@@ -19,6 +19,10 @@ class AnswersController < ApplicationController
     @answer.update(answer_params)
 
     respond_with @answer
+  end
+
+  def search
+    @results = Answer.search(params[:q], with: { question_id: @question.id })
   end
 
   private
