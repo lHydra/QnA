@@ -1,7 +1,5 @@
-= simple_nested_form_for @question do |f|
+= simple_form_for @question do |f|
   = f.input :title
   = f.input :body
-  = f.simple_fields_for :attachments do |a|
-    = a.input :file, as: :file, label: 'Upload Attachment'
-  p= f.link_to_add 'Add a file', :attachments
+  = f.input :file, as: :file, label: 'Upload Attachment'
   = f.button :submit

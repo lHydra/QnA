@@ -25,19 +25,20 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'pundit'
-gem 'doorkeeper'
+gem 'doorkeeper', '~> 4.2.6'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'sidekiq'
 gem 'whenever', require: false
 gem 'mysql2',          '~> 0.3',    :platform => :ruby
 gem 'thinking-sphinx', '~> 4.0'
+gem 'bootsnap', require: false
 
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'rails-controller-testing'
   gem 'factory_girl_rails'
-  gem 'capybara-webkit'
+  gem 'capybara-webkit', github: 'thoughtbot/capybara-webkit', branch: 'master'
 end
 
 group :development do

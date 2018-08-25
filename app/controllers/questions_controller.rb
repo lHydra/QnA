@@ -12,13 +12,12 @@ class QuestionsController < ApplicationController
   def show
     @answer = @question.answers.build
     @answer.attachments.build
+
     respond_with @question
   end
 
   def new
-    @question = Question.new
-    @question.attachments.build
-    respond_with @question
+    @question = QuestionForm.new
   end
 
   def edit
@@ -26,16 +25,19 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(question_params)
-    @question.user = current_user
+    @question = QuestionForm.new(question_params)
+    @question.user_id = current_user.id
     @question.save
-    respond_with @question
+
+    respond_with @question, location: -> { question_path(Question.last) }
   end
 
   def update
-    @question.update(question_params)
+    @question = QuestionForm.new(question_params.merge(id: params[:id]))
     authorize @question
-    respond_with @question
+    @question.update
+
+    respond_with @question, location: -> { question_path(@question.id) }
   end
 
   def destroy
@@ -54,6 +56,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :body, attachments_attributes: [:id, :file])
+    params.require(:question).permit(:title, :body, :file)
   end
 end
