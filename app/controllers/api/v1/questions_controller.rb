@@ -10,8 +10,8 @@ class Api::V1::QuestionsController < Api::V1::BaseController
   end
 
   def create
-    @question = Question.new(question_params)
-    @question.user = current_resource_owner
+    @question = QuestionForm.new(question_params)
+    @question.user_id = current_resource_owner.id
     @question.save
     respond_with @question
   end

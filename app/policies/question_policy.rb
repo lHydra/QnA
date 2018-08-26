@@ -4,7 +4,7 @@ class QuestionPolicy < ApplicationPolicy
   end
 
   def update?
-    edit?
+    record.user_id == user.id
   end
 
   def destroy?

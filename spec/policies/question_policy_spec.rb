@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 describe QuestionPolicy do
-  subject { QuestionPolicy.new(user, question) }
+  subject { QuestionPolicy.new(author, question) }
 
   context 'for a visitor' do
-    let(:user) { nil }
-    let(:question) { create(:question) }
+    let(:author) { create(:user) }
+    let(:user) { create(:user) }
+    let(:question) { create(:question, user: user) }
 
     it { should_not authorize(:update)  }
     it { should_not authorize(:edit)    }
@@ -13,8 +14,8 @@ describe QuestionPolicy do
   end
 
   context 'for a author' do
-    let(:user) { create(:user) }
-    let(:question) { create(:question, user: user) }
+    let(:author) { create(:user) }
+    let(:question) { create(:question, user: author) }
 
     it { should authorize(:update)  }
     it { should authorize(:edit)    }
