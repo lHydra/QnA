@@ -6,7 +6,7 @@ I'm doing this project for myself, I'm trying new technologies and features in i
 
 ### At the moment the project implemented the following:
 
-* Guest can sign in/sign up 
+* Guest can sign in/sign up
 * User can ask a question
 * User can answer questions
 * User can sign in through Facebook and VK
@@ -14,6 +14,7 @@ I'm doing this project for myself, I'm trying new technologies and features in i
 * User can add atachment file to the question/answer
 * Project has authorization for Question and Answer
 * Project has API v1 (you can create question, create answer, get list of answers, get list of questions, get profile, get question and get answer)
+* User can subscribes/unsubscribes to question
 
 ### Technologies used in the project:
 
@@ -22,4 +23,4 @@ I'm doing this project for myself, I'm trying new technologies and features in i
 * **Carrierwave** for attachment files
 * **Pundit** for authorization
 * **Doorkeeper** for API
-* **RSpec**, Capybara, Factory Bot - for testing
+* **RSpec**, **Capybara**, **Factory Bot** - for testing
