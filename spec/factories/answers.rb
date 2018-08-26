@@ -1,11 +1,11 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :answer do
     user
-    body 'MyString'
+    body { 'MyString' }
     question
   end
 
   factory :invalid_answer, class: Answer do
-    body nil
+    body { nil }
   end
 end
