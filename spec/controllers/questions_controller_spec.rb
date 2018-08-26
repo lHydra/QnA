@@ -44,14 +44,6 @@ RSpec.describe QuestionsController, type: :controller do
   describe 'GET #new' do
     before { get :new }
 
-    it 'assigns new Question to @question' do
-      expect(assigns(:question)).to be_a_new(Question)
-    end
-
-    it 'assigns new attachments to @attachments' do
-      expect(assigns(:question).attachments.first).to be_a_new(Attachment)
-    end
-
     it 'render new view' do
       expect(response).to render_template :new
     end
@@ -77,7 +69,7 @@ RSpec.describe QuestionsController, type: :controller do
 
       it 'redirects to show view' do
         post :create, params: { question: attributes_for(:question) }
-        expect(response).to redirect_to question_path(assigns(:question))
+        expect(response).to redirect_to question_path(Question.last)
       end
     end
 
@@ -95,11 +87,6 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid attributes' do
-      it 'assigns the requested question to @question' do
-        put :update, params: { id: question, question: attributes_for(:question) }
-        expect(assigns(:question)).to eq(question)
-      end
-
       it 'updates question attributes' do
         put :update, params: { id: question, question: { title: 'Updated Title', body: 'Updated body' } }
         question.reload
