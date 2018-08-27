@@ -6,7 +6,7 @@
       span.input-group-btn
         = button_tag 'Search', class: 'btn btn-default'
 
-- @question.answers.order('id DESC').each do |answer|
+- @answers.each do |answer|
   .answer id="answer-#{answer.id}"
     p= answer.body
     ul
