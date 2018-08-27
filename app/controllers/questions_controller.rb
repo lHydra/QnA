@@ -5,11 +5,13 @@ class QuestionsController < ApplicationController
   respond_to :html
 
   def index
-    @questions = Question.all
+    @questions = Question.includes(:user).all
     respond_with @questions
   end
 
   def show
+    @answers = @question.answers.includes(:attachments, :comments)
+                                .order('id DESC')
     @answer = @question.answers.build
     @answer.attachments.build
 
